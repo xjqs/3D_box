@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	#box{
+		margin: 200px auto;
+		padding: 50px;
+		width: 200px;
+		height: 200px;
+		border: 1px solid #000;
+		perspective:600px;
+	}
+	#div{
+		position: relative;
+		width: 200px;
+		height: 200px;
+		transition:6s;
+		transform-style:preserve-3d; /*旋转的时候带3d效果，保留子元素的3d变换*/
+		transform-origin:center center 100px;  /* 变换基点，最好不要修改变化基点的z轴，可能会影响宽度高度的变化 */
+	}
+	#box:hover #div{
+		transform:rotateY(360deg);  
+	}
+	#div div{
+		position: absolute;
+		width: 200px;
+		height: 200px;
+		font:100px/200px "Microsoft Yahei";
+		text-align: center;
+		color: #fff;
+	}
+	#div div:nth-of-type(1){
+		left:0;
+		top: -200px;
+		background: #f00;
+		transform-origin:bottom;
+		transform:rotateX(-90deg);
+	}
+	#div div:nth-of-type(2){
+		left:-200px;
+		top: 0px;
+		background: blue;
+		transform-origin:right;
+		transform:rotateY(90deg);
+	}
+	#div div:nth-of-type(3){
+		left:0;
+		top: 0px;
+		background: yellow;
+		/* transform-origin:left;
+		transform:rotateY(90deg); */
+	}
+	#div div:nth-of-type(4){
+		left:200px;
+		top: 0px;
+		background: #ccc;
+		transform-origin:left;
+		transform:rotateY(-90deg);
+	}
+	#div div:nth-of-type(5){
+		left:0px;
+		top: 200px;
+		background: green;
+		transform-origin:top;
+		transform:rotateX(90deg);
+	}
+	#div div:nth-of-type(6){
+		left:0px;
+		top: 0px;
+		background: pink;
+		transform:translateZ(200px);
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="div">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+		</div>
+	</div>
+</body>
+</html>

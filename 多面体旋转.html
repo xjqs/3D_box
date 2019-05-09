@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css" id="style">
+	#box{
+		margin: 200px auto;
+		padding: 50px;
+		width: 200px;
+		height: 300px;
+		border: 1px solid #000;
+		perspective:600px;
+	}
+	#div{
+		position: relative;
+		width: 200px;
+		height: 300px;
+		transition:6s;
+		transform-style:preserve-3d; /*旋转的时候带3d效果，保留子元素的3d变换*/
+		
+	}
+	#box:hover #div{
+		transform:rotateY(-360deg);  
+	}
+	#div div{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 196px;
+		height: 296px;
+		font:100px/296px "Microsoft Yahei";
+		text-align: center;
+		color: #fff;
+		border: 2px solid #000;
+	}
+	#div div:nth-of-type(1){
+		background: #f00;
+		transform:rotateY(0deg) translateZ(173.205px);
+	}
+	#div div:nth-of-type(2){
+		background: blue;
+		transform:rotateY(60deg) translateZ(173.205px);
+	}
+	#div div:nth-of-type(3){
+		background: yellow;
+		transform:rotateY(120deg) translateZ(173.205px);
+	}
+	#div div:nth-of-type(4){
+		background: #ccc;
+		transform:rotateY(180deg) translateZ(173.205px);
+	}
+	#div div:nth-of-type(5){
+		background: green;
+		transform:rotateY(240deg) translateZ(173.205px);
+	}
+	#div div:nth-of-type(6){
+		background: pink;
+		transform:rotateY(300deg) translateZ(173.205px);
+	}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="div">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div> 
+		</div>
+	</div>
+	<!-- 正N边型的外角和=360
+	正N边型的外角=360/N
+	每一个面的旋转角度:
+	360/6=60
+	偏移值(边心距)：
+	100*tan60=1.73.205 -->
+
+	<!-- 如果多面，自动计算生成 -->
+	<script type="text/javascript">
+		let div=document.querySelector("#div");
+		let style=document.querySelector("#style");
+		let inner="";
+		let cssInner="";
+		let deg=360/data.length;  //旋转角度
+		//角度转弧度；弧度=π/180*角度
+		let rad=Math.PI/180*((180-deg)/2);
+		let w=div.offsetWidth;
+		//tan 直角三角形 临边和对边的比值
+		let R=Math.tan(rad)*w/2;   //tan接受的是一个弧度
+
+		/*data.forEach((item,index)=>{
+			cssInner+=`
+				#div div:nth-child(${(index+1)}){
+					background:${item};
+					transform:rotateY(${deg*index}deg) translateZ(${R}px)
+				}
+			`
+		})*/
+	</script>
+</body>
+</html>
